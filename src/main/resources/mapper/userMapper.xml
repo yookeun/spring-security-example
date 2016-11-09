@@ -4,16 +4,21 @@
 
     <select id="check" resultType="int" parameterType="userDto">
       SELECT COUNT(1)
-      FROM users
+      FROM test_user
       WHERE 1 = 1
-      AND username = #{username} AND password = #{userpwd}
+      AND username = #{username} AND password = #{password}
     </select>
 
     <select id="select" resultType="userDto" parameterType="String">
-      SELECT id, username, password
-      FROM user
+      SELECT id, username, password, is_admin
+      FROM test_user
       WHERE 1 = 1
       AND username = #{username}
     </select>
+
+
+    <insert id="insert" parameterType="userDto">
+        INSERT INTO test_user(username, password, is_adimin) VALUES (#{username}, #{password}, #{is_admin})
+    </insert>
 
 </mapper>

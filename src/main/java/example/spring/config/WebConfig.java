@@ -63,7 +63,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public DataSource dataSource() {
         HikariDataSource ds = new HikariDataSource();
         ds.setDriverClassName("com.mysql.jdbc.Driver");
-        ds.setJdbcUrl("jdbc:mysql://localhost:3306/testme");
+        ds.setJdbcUrl("jdbc:mysql://localhost:3306/TEST_DB");
         ds.setUsername("root");
         ds.setPassword("1234");
         return ds;

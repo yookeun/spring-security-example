@@ -1,12 +1,12 @@
-package example.web.login;
+package example.web.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by yookeun on 2016. 9. 13..
@@ -26,21 +26,18 @@ public class UserController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String postLogin(UserDto userDto) {
-        int cnt = service.check(userDto);
-        if (cnt > 0) {
-            return "redirect:/user/"+userDto.getUsername();
-        } else {
-            return "redirect:/error";
-        }
+    public String loginProcess(@RequestParam String username, @RequestParam String password ) {
+
+        System.out.println("username====="+username);
+        System.out.println("username====="+password);
 
 
+        return "/user";
     }
 
-
-    @RequestMapping(value = "/user/{username}", method = RequestMethod.GET)
-    public String getUser(@PathVariable String username, Model model) {
-        UserDto userDto = service.select(username);
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public String getUser(LoginUser user, Model model) {
+        UserDto userDto = service.select(user.getUsername());
         model.addAttribute("user", userDto);
         return "profile";
     }

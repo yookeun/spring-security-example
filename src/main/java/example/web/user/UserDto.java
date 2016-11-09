@@ -1,4 +1,4 @@
-package example.web.login;
+package example.web.user;
 
 import lombok.Data;
 
@@ -9,5 +9,6 @@ import lombok.Data;
 public class UserDto {
     private Integer id;
     private String username;
-    private String userpwd;
+    private String password;
+    private String is_admin;
 }
