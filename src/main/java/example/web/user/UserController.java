@@ -25,15 +25,20 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginProcess(@RequestParam String username, @RequestParam String password ) {
 
-        System.out.println("username====="+username);
-        System.out.println("username====="+password);
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String loginProcess(LoginUser loginUser) {
+
+        System.out.println("username====="+loginUser.getUsername());
+        System.out.println("password====="+loginUser.getPassword());
 
 
         return "/user";
     }
+
+
+
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public String getUser(LoginUser user, Model model) {
