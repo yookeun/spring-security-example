@@ -23,22 +23,15 @@ public class LoginUser implements UserDetails {
     private List<String> roles;
     private String isAdmin;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        for (String role : roles) {
-            authorities.add(new SimpleGrantedAuthority(role));
-        }
-        return authorities;
+
+    public LoginUser(){
     }
-
-
 
     public LoginUser(UserDto userDto) {
         this.id = userDto.getId();
         this.username = userDto.getUsername();
         this.password = userDto.getPassword();
-        this.isAdmin = userDto.getIs_admin();
+        this.isAdmin = userDto.getIsadmin();
 
     }
 
@@ -60,5 +53,15 @@ public class LoginUser implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role));
+        }
+        return authorities;
     }
 }

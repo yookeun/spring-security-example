@@ -2,6 +2,7 @@ package example.spring.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -18,7 +19,7 @@ import javax.sql.DataSource;
 /**
  * Created by yookeun on 2016. 9. 17..
  */
-
+@ComponentScan(basePackages = {"example.web"})
 @Configuration
 @EnableWebSecurity  //웹보안 설정
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -43,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginProcessingUrl("/login").failureUrl("/login?error=true").successHandler(loginSuccessHandler)
                 .usernameParameter("username").passwordParameter("password").permitAll().and().logout().deleteCookies("remove")
                 .invalidateHttpSession(true).logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/user").and().csrf().disable();
+                .logoutSuccessUrl("/").and().csrf().disable();
     }
 
     @Bean
@@ -52,15 +53,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    /* 임시주석 테스트중
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.authenticationProvider(authenticationProvider());
+    }
+
+
+
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailService);
-        authenticationProvider.setPasswordEncoder(passwordEncoder());
+       // authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
-    */
+
 
     /*
     @Override

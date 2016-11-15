@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * Created by yookeun on 2016. 9. 13..
@@ -20,30 +21,16 @@ public class UserController {
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        return "login";
+    public ModelAndView login() {
+        return new ModelAndView("login");
+    }
+
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView index(LoginUser loginUser) {
+        System.out.println("user22===>"+loginUser.getUsername());
+        ModelAndView model = new ModelAndView("index");
+        return model;
     }
 
 
-
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginProcess(LoginUser loginUser) {
-
-        System.out.println("username====="+loginUser.getUsername());
-        System.out.println("password====="+loginUser.getPassword());
-
-
-        return "/user";
-    }
-
-
-
-
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String getUser(LoginUser user, Model model) {
-        UserDto userDto = service.select(user.getUsername());
-        model.addAttribute("user", userDto);
-        return "profile";
-    }
 }
