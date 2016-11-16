@@ -26,8 +26,8 @@
     <div class="jumbotron">
         <h1>Hello Home!</h1>
         <ul>
-            <li><a href="/login">LOGIN</a></li>
-            <li><a href="#">LIST</a></li>
+            <li>로그인이 되어 있어야 이 페이지로 접근할 수 있습니다</li>
+            <li><a href="/">홈으로.</a></li>
         </ul>
 
     </div>

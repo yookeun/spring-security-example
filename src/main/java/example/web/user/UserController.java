@@ -27,8 +27,8 @@ public class UserController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView index(LoginUser loginUser) {
-        System.out.println("user22===>"+loginUser.getUsername());
         ModelAndView model = new ModelAndView("index");
+        model.addObject("user", loginUser);
         return model;
     }
 

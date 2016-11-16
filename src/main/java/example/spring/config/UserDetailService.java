@@ -25,7 +25,6 @@ public class UserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserDto userDto = dao.select(username);
-        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> loadUserByUsername.username ===== " + username);
         if (userDto == null) {
             throw new UsernameNotFoundException("UsernameNotFound [" + username + "]");
         }
@@ -36,8 +35,6 @@ public class UserDetailService implements UserDetailsService {
     private LoginUser createUser(UserDto userDto) {
         LoginUser loginUser = new LoginUser(userDto);
         loginUser.setRoles(Arrays.asList("ROLE_USER"));
-        System.out.println(">>>>>>>>> createUser.password == " + loginUser.getPassword());
-        System.out.println(">>>>>>>>> createUser.username == " + loginUser.getUsername());
         return loginUser;
     }
 }
