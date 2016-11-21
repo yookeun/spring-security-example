@@ -34,7 +34,13 @@ public class UserDetailService implements UserDetailsService {
 
     private LoginUser createUser(UserDto userDto) {
         LoginUser loginUser = new LoginUser(userDto);
-        loginUser.setRoles(Arrays.asList("ROLE_USER"));
+        if (loginUser.getIsAdmin().equals("Y")) {
+            loginUser.setRoles(Arrays.asList("ROLE_ADMIN"));
+        } else {
+            loginUser.setRoles(Arrays.asList("ROLE_USER"));
+        }
+        //System.out.println("username === "+loginUser.getUsername());
+        //System.out.println("role == " + loginUser.getRoles());
         return loginUser;
     }
 }

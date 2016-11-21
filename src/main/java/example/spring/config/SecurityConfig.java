@@ -20,7 +20,7 @@ import javax.sql.DataSource;
 /**
  * Created by yookeun on 2016. 9. 17..
  */
-@ComponentScan(basePackages = {"example"})
+@ComponentScan("example")
 @Configuration
 @EnableWebSecurity  //웹보안 설정
 @EnableGlobalMethodSecurity(prePostEnabled=true)
@@ -49,6 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/").and().csrf().disable();
     }
 
+    /**
+     * BCryptPasswordEncoder: bcrypt 해시 알고리즘을 이용하여 입력받은 데이터를 암호화한다
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -59,6 +63,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 
+    /**
+     * 데이터베이스 인증용 Provider
+     * @return
+     */
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();

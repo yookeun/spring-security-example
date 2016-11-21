@@ -60,6 +60,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         return resolver;
     }
 
+    /**
+     * HikariCP 설정
+     * @return
+     */
     @Bean
     @Primary
     public DataSource dataSource() {

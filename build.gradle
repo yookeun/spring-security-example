@@ -35,6 +35,7 @@ dependencies {
     //spring security
     compile "org.springframework.security:spring-security-web:${securityVersion}"
     compile "org.springframework.security:spring-security-config:${securityVersion}"
+    compile "org.springframework.security:spring-security-taglibs:${securityVersion}"
 
     //mybatis
     compile 'org.mybatis:mybatis:3.3.0'
